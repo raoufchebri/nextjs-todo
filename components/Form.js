@@ -1,14 +1,13 @@
-import axios from 'axios';
 import { useState } from 'react';
-import Checkbox from './checkbox';
+import Checkbox from './Checkbox';
 
-export default function Form({onCreate}) {
+export default function Form({ onCreate }) {
   const [text, setText] = useState('');
 
   const createTodo = (event) => {
     event.preventDefault();
     if (!text) return;
-    onCreate(text)
+    onCreate(text);
     setText('');
   };
 

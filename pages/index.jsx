@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
-import Form from '../components/form';
-import Todo from '../components/todo';
-import Container from '../components/container';
+import Form from '../components/Form';
+import Todo from '../components/Todo';
+import Container from '../components/Container';
 import { prisma } from '../db';
 
 export async function getServerSideProps() {
@@ -99,22 +99,22 @@ export default function Home({ intialTodos }) {
           <p className='mt-20 text-xs uppercase text-zinc-400 text-center font-bold tracking-[0.3em]'>
             Brought to you by
           </p>
-          <div className='flex flex-col items-center my-12 space-y-4 sm:mt-8 sm:space-y-0 md:mx-auto md:max-w-2xl sm:grid sm:gap-6 sm:grid-cols-4'>
-            <div className='flex items-center justify-center'>
-              <a href='https://nextjs.org' aria-label='Next.js Link'>
-                <img
-                  src='/nextjs.png'
-                  alt='Next.js Logo'
-                  className='w-24 text-white'
-                />
-              </a>
-            </div>
+          <div className='flex flex-col items-center my-12 space-y-4 sm:mt-8 sm:space-y-0 md:mx-auto md:max-w-2xl sm:grid sm:gap-6 sm:grid-cols-5'>
             <div className='flex items-center justify-center'>
               <a href='https://vercel.com' aria-label='Vercel.com Link'>
                 <img
                   src='/vercel.svg'
                   alt='Vercel.com Logo'
-                  className='h-6 text-white'
+                  className='h-4 text-white'
+                />
+              </a>
+            </div>
+            <div className='flex items-center justify-center'>
+              <a href='https://nextjs.org' aria-label='Next.js Link'>
+                <img
+                  src='/nextjs.png'
+                  alt='Next.js Logo'
+                  className='w-16 text-white'
                 />
               </a>
             </div>
@@ -123,7 +123,19 @@ export default function Home({ intialTodos }) {
                 <img
                   src='/prisma.svg'
                   alt='prisma.io Logo'
-                  className='h-9 text-white'
+                  className='h-6 text-white'
+                />
+              </a>
+            </div>
+            <div className='flex items-center justify-center'>
+              <a
+                href='https://tailwindcss.com'
+                aria-label='tailwindcss.com Link'
+              >
+                <img
+                  src='/tailwindcss.svg'
+                  alt='tailwindcss.com Logo'
+                  className='sm:h-12 h-4 text-white'
                 />
               </a>
             </div>
@@ -132,7 +144,7 @@ export default function Home({ intialTodos }) {
                 <img
                   src='/neon.svg'
                   alt='neon.tech Logo'
-                  className='h-8 text-white'
+                  className='h-6 text-white'
                 />
               </a>
             </div>
