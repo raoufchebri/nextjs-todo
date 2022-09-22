@@ -28,7 +28,7 @@ export default function Home({ intialTodos }) {
   const [todos, setTodos] = useState(intialTodos);
   const onCreate = useCallback(
     (text) => {
-      setTodos([{ text, id: todos.length, completed: false }, ...todos]);
+      // setTodos([{ text, id: todos.length, completed: false }, ...todos]);
       axios.post('/api/todos/create', { text }).then(({ data }) => {
         setTodos([data.newTodo, ...todos.splice(0)]);
       });
@@ -38,24 +38,28 @@ export default function Home({ intialTodos }) {
 
   const onDelete = useCallback(
     (todoId) => {
-      const index = todos.findIndex((todo) => todo.id === todoId);
-      setTodos([...todos.slice(0, index), ...todos.slice(index + 1)]);
-      axios.delete(`/api/todos/delete/${todoId}`);
+      axios.delete(`/api/todos/delete/${todoId}`).then(() => {
+        const index = todos.findIndex((todo) => todo.id === todoId);
+        setTodos([...todos.slice(0, index), ...todos.slice(index + 1)]);
+      });
     },
     [todos]
   );
 
   const onUpdate = useCallback(
     (todo) => {
-      const index = todos.findIndex((i) => i.id === todo.id);
-      setTodos([
-        ...todos.slice(0, index),
-        { ...todo, completed: !todo.completed },
-        ...todos.slice(index + 1),
-      ]);
-      axios.put(`/api/todos/update/${todo.id}`, {
-        completed: !todo.completed,
-      });
+      axios
+        .put(`/api/todos/update/${todo.id}`, {
+          completed: !todo.completed,
+        })
+        .then(() => {
+          const index = todos.findIndex((i) => i.id === todo.id);
+          setTodos([
+            ...todos.slice(0, index),
+            { ...todo, completed: !todo.completed },
+            ...todos.slice(index + 1),
+          ]);
+        });
     },
     [todos]
   );
