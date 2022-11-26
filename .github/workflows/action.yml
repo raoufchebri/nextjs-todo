@@ -8,7 +8,7 @@ jobs:
       - uses: neondatabase/create-branch-action@beta
         with:
           project_id: morning-shadow-515617
-          parent_branch_id: br-cool-wildflower-980731
+          parent_branch_id: br-calm-mode-713991
           branch_name: test_branch
           api_key: ${{ secrets.NEON_API_KEY }}
         id: create-branch
