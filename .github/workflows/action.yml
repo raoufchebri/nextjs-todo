@@ -16,7 +16,6 @@ jobs:
       - run: echo branch_id ${{ steps.create-branch.outputs.branch_id}}
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm run test
       - uses: neondatabase/delete-branch-action@beta
         with:
           project_id: ${{ steps.create-branch.outputs.project_id}}
