@@ -15,6 +15,7 @@ export default function Form({ onCreate }) {
     <form
       className='w-full flex items-center bg-white dark:bg-gray-800 rounded-md max-w-md mx-auto px-7 mt-7 sm:mt-12 h-10 sm:h-12 space-x-1'
       onSubmit={createTodo}
+      data-testid='form'
     >
       <Checkbox disabled />
       <input
