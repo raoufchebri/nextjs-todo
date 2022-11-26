@@ -14,7 +14,7 @@ jobs:
         id: create-branch
       - run: echo project_id ${{ steps.create-branch.outputs.project_id}}
       - run: echo branch_id ${{ steps.create-branch.outputs.branch_id}}
-      - run: sleep 4
+      - run: echo "Running tests"
       - uses: neondatabase/delete-branch-action@beta
         with:
           project_id: ${{ steps.create-branch.outputs.project_id}}
