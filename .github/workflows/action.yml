@@ -1,4 +1,4 @@
-name: Neon Actions Demo
+name: Neon Developer Days Actions Demo
 run-name: e2e Testing with Neon Actions 🚀
 on: [push]
 jobs:
