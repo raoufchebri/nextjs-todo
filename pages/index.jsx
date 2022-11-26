@@ -28,7 +28,6 @@ export default function Home({ intialTodos }) {
   const [todos, setTodos] = useState(intialTodos);
   const onCreate = useCallback(
     (text) => {
-      // setTodos([{ text, id: todos.length, completed: false }, ...todos]);
       axios.post('/api/todos/create', { text }).then(({ data }) => {
         setTodos([data.newTodo, ...todos.splice(0)]);
       });

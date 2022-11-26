@@ -1,0 +1,23 @@
+name: Neon Actions Demo
+run-name: e2e Testing with Neon Actions 🚀
+on: [push]
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: neondatabase/create-branch-action@beta
+        with:
+          project_id: morning-shadow-515617
+          parent_branch_id: br-calm-mode-713991
+          branch_name: test_branch
+          api_key: ${{ secrets.NEON_API_KEY }}
+        id: create-branch
+      - run: echo project_id ${{ steps.create-branch.outputs.project_id}}
+      - run: echo branch_id ${{ steps.create-branch.outputs.branch_id}}
+      - uses: actions/checkout@v2
+      - run: npm install
+      - uses: neondatabase/delete-branch-action@beta
+        with:
+          project_id: ${{ steps.create-branch.outputs.project_id}}
+          branch_id: ${{ steps.create-branch.outputs.branch_id}}
+          api_key: ${{ secrets.NEON_API_KEY }}
