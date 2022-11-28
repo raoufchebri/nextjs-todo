@@ -75,7 +75,7 @@ export default function Home({ intialTodos }) {
           <Container>
             <div className='flex justify-between'>
               <h1 className='text-xl sm:text-3xl text-white font-bold tracking-[0.625rem]'>
-                TODO
+                TODO APP
               </h1>
             </div>
             <Form onCreate={onCreate} />
