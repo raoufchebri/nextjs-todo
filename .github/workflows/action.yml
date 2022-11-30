@@ -7,9 +7,9 @@ jobs:
     steps:
       - uses: neondatabase/create-branch-action@beta
         with:
-          project_id: sparkling-sky-068708
-          parent_branch_id: br-calm-darkness-799284
-          branch_name: test_branch
+          project_id: ${{ secrets.NEON_PROJECT_ID }}
+          parent_branch_id: ${{ secrets.NEON_PARENT_BRANCH_ID }}
+          branch_name: action_demo_branch
           api_key: ${{ secrets.NEON_API_KEY }}
         id: create-branch
       - run: echo project_id ${{ steps.create-branch.outputs.project_id}}
