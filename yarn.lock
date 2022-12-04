@@ -557,6 +557,11 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@neondatabase/serverless@^0.1.13":
+  "integrity" "sha512-MBZI1MDUHgDHZI9XeY3Nyl+4al6y8E1LXW7ztSQwFqpjta3hEgSsfQwknldEaXupmOSUGDCSC6lAPFvbFUlVbw=="
+  "resolved" "https://registry.npmjs.org/@neondatabase/serverless/-/serverless-0.1.13.tgz"
+  "version" "0.1.13"
+
 "@next/env@12.3.4":
   "integrity" "sha512-H/69Lc5Q02dq3o+dxxy5O/oNxFsZpdL6WREtOOtOM1B/weonIwDXkekr1KV5DPVPr12IHFPrMrcJQ6bgPMfn7A=="
   "resolved" "https://registry.npmjs.org/@next/env/-/env-12.3.4.tgz"

@@ -9,6 +9,7 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.1.13",
     "@prisma/client": "4.3.1",
     "@testing-library/jest-dom": "^5.16.5",
     "jest-environment-jsdom": "^29.3.1",
