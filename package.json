@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/dev.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "node scripts/start.js"
+    "start": "next start"
   },
   "dependencies": {
     "@prisma/client": "4.3.1",
