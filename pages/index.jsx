@@ -67,7 +67,7 @@ export default function Home({ intialTodos }) {
   return (
     <>
       <Head>
-        <title>Todo App Ver 10</title>
+        <title>Todo App</title>
         <link rel='icon' href='https://neon.tech/favicon-32x32.png' />
       </Head>
 
