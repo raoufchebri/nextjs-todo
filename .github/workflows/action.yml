@@ -17,9 +17,18 @@ jobs:
           project_id: ${{ secrets.NEON_PROJECT_ID }}
           branch_name: branch_pull_${{steps.get_pull_number.outputs.pull_number}}
           api_key: ${{ secrets.NEON_API_KEY }}
-          username: raouf
-          password: password
+          username: ${{ secrets.PGUSERNAME }}
+          password: ${{ secrets.PGPASSWORD }}
         id: create-branch
       - run: echo db_url ${{ steps.create-branch.outputs.db_url}}
-#       - uses: actions/checkout@v2
-#       - run: npm install
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run Prisma Migrate
+        run: |
+          touch .env
+          echo DATABASE_URL=${DATABASE_URL} >> .env
+          echo SHADOW_DATABASE_URL=${SHADOW_DATABASE_URL} >> .env
+          npx prisma migrate dev
+        env:
+          DATABASE_URL: ${{ steps.create-branch.outputs.db_url}}/main
+          SHADOW_DATABASE_URL: ${{ steps.create-branch.outputs.db_url}}/shadow
