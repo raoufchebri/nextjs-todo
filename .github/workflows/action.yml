@@ -10,16 +10,19 @@ jobs:
         run: | 
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           echo "pull_number=${pull_number}" >> $GITHUB_OUTPUT
-          echo $pull_number
-      - name: Create Branch
+      - name: Create Neon Branch
         uses: neondatabase/create-branch-action@update-v2
         with:
-          project_id: ${{ secrets.NEON_PROJECT_ID }}
-          branch_name: action_demo_branch
-          api_key: ${{ secrets.NEON_API_KEY }}
+          project_id: ${PROJECT_ID}
+          branch_name: ${BRANCH_NAME}
+          api_key: ${API_KEY}
           username: raouf
-          password: password
+          password: password1234
         id: create-branch
+        env:
+          BRANCH_NAME: branch_pull_${{steps.get_pull_number.outputs.pull_number}}
+          PROJECT_ID: secrets.NEON_PROJECT_ID
+          API_KEY: ${{ secrets.NEON_API_KEY }}
       - run: echo db_url ${{ steps.create-branch.outputs.db_url}}
 #       - uses: actions/checkout@v2
 #       - run: npm install
