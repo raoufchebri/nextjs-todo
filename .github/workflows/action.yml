@@ -14,7 +14,6 @@ jobs:
           password: password
         id: create-branch
       - run: echo db_url ${{ steps.create-branch.outputs.db_url}}
-#       - run: echo branch_id ${{ steps.create-branch.outputs.branch_id}}
 #       - uses: actions/checkout@v2
 #       - run: npm install
 
