@@ -1,8 +1,7 @@
-name: Neon Developer Days Actions Demo
+name: Neon and Vercel Preview
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-run-name: e2e Testing with Neon Actions 🚀
 on: [pull_request]
 jobs:
   e2e:
