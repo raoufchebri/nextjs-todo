@@ -16,4 +16,5 @@ model Todo {
   created_at DateTime @default(now())
   completed Boolean
   text String
+  col String
 }
