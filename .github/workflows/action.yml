@@ -20,7 +20,7 @@ jobs:
           password: password1234
         id: create-branch
         env:
-          BRANCH_NAME: ${{steps.get_pull_number.outputs.pull_number}}
+          BRANCH_NAME: branch_pull_${{steps.get_pull_number.outputs.pull_number}}
           PROJECT_ID: secrets.NEON_PROJECT_ID
           API_KEY: ${{ secrets.NEON_API_KEY }}
       - run: echo db_url ${{ steps.create-branch.outputs.db_url}}
