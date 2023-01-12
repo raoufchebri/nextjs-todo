@@ -15,7 +15,7 @@ jobs:
         uses: neondatabase/create-branch-action@update-v2
         with:
           project_id: ${{ secrets.NEON_PROJECT_ID }}
-          branch_name: action_demo_branch
+          branch_name: branch_pull_${{steps.get_pull_number.outputs.pull_number}}
           api_key: ${{ secrets.NEON_API_KEY }}
           username: raouf
           password: password
