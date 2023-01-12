@@ -15,5 +15,5 @@ model Todo {
   id String @id @default(uuid())
   created_at DateTime @default(now())
   completed Boolean
-  text String @default("")
+  text String
 }
