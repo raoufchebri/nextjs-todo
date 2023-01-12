@@ -17,7 +17,7 @@ jobs:
           branch_name: ${BRANCH_NAME}
           api_key: ${API_KEY}
           username: raouf
-          password: password
+          password: password1234
         id: create-branch
         env:
           BRANCH_NAME: ${{steps.get_pull_number.outputs.pull_number}}
