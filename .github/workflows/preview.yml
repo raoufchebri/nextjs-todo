@@ -45,7 +45,7 @@ jobs:
         id: deploy
         run: | 
           preview_url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
-          echo preview_url=${preview_url}" >> $GITHUB_OUTPUT
+          echo "preview_url=${preview_url}" >> $GITHUB_OUTPUT
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
