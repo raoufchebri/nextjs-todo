@@ -5,19 +5,16 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     steps:
-      - uses: neondatabase/create-branch-action@beta
+      - uses: neondatabase/create-branch-action@update-v2
         with:
           project_id: ${{ secrets.NEON_PROJECT_ID }}
-          parent_branch_id: ${{ secrets.NEON_PARENT_BRANCH_ID }}
           branch_name: action_demo_branch
           api_key: ${{ secrets.NEON_API_KEY }}
+          username: raouf
+          password: password
         id: create-branch
-      - run: echo project_id ${{ steps.create-branch.outputs.project_id}}
-      - run: echo branch_id ${{ steps.create-branch.outputs.branch_id}}
-      - uses: actions/checkout@v2
-      - run: npm install
-      - uses: neondatabase/delete-branch-action@beta
-        with:
-          project_id: ${{ steps.create-branch.outputs.project_id}}
-          branch_id: ${{ steps.create-branch.outputs.branch_id}}
-          api_key: ${{ secrets.NEON_API_KEY }}
+      - run: echo project_id ${{ steps.create-branch.outputs.db_url}}
+#       - run: echo branch_id ${{ steps.create-branch.outputs.branch_id}}
+#       - uses: actions/checkout@v2
+#       - run: npm install
+
