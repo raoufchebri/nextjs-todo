@@ -1,1 +1,15 @@
-
+name: Merge
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on: [pull_request]
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get PR number
+        id: get_pull_number
+        run: | 
+          pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          echo "pull_number=${pull_number}" >> $GITHUB_OUTPUT
+          echo $pull_number
