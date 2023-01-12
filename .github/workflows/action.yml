@@ -5,11 +5,6 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     steps:
-      - name: Get PR number
-        id: get_pull_number
-        run: | 
-          pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          echo "pull_number=${pull_number}" >> $GITHUB_OUTPUT
       - name: Create Neon Branch
         uses: neondatabase/create-branch-action@update-v2
         with:
@@ -20,7 +15,7 @@ jobs:
           password: password1234
         id: create-branch
         env:
-          BRANCH_NAME: ${{steps.get_pull_number.outputs.pull_number}}
+          BRANCH_NAME: branch_from_action
           PROJECT_ID: secrets.NEON_PROJECT_ID
           API_KEY: ${{ secrets.NEON_API_KEY }}
       - run: echo db_url ${{ steps.create-branch.outputs.db_url}}
