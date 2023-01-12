@@ -10,6 +10,6 @@ jobs:
       - name: Get PR number
         id: get_pull_number
         run: | 
-          pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          echo "pull_number=${pull_number}" >> $GITHUB_OUTPUT
-          echo $pull_number
+          sha=$(jq --raw-output .push.before "$GITHUB_EVENT_PATH")
+          echo "sha=${sha}" >> $GITHUB_OUTPUT
+          echo $sha
