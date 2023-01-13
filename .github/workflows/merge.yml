@@ -10,4 +10,4 @@ jobs:
       - name: Get PR number
         id: get_pull_number
         run: | 
-          echo ${{ github.sha }}
+          echo ${{ github }}
