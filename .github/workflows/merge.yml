@@ -12,6 +12,7 @@ jobs:
         run: | 
           echo "sha=${{ github.event.before }}" >> $GITHUB_OUTPUT
       - name: Search branch by name
+        id: get_branch_id
         run: |
           branches=$(curl \
             "https://console.neon.tech/api/v2/projects/${PROJECT_ID}/branches" \
@@ -20,9 +21,9 @@ jobs:
             --header "Authorization: Bearer ${API_KEY}" \
             | jq -r .branches
             )
-          echo $branches  
-          echo "$branches" | jq -c '.[] | select(.name | contains("${SHA}")) .id' 
-          
+          branch_id=("$branches" | jq -c '.[] | select(.name | contains("'${SHA}'")) .id') 
+          echo $branch_id
+          echo "branch_id=${branch_id}" >> GITHUB_OUTPUT
         env:
           PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
           API_KEY: ${{ secrets.NEON_API_KEY }}
