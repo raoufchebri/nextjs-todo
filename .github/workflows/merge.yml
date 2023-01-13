@@ -23,7 +23,7 @@ jobs:
             )
           branch_id=$(echo "$branches" | jq -c '.[] | select(.name | contains("'${SHA}'")) .id')
           echo $branch_id
-        #  echo "branch_id=${branch_id}" >> GITHUB_OUTPUT
+          echo "branch_id=${branch_id}" >> GITHUB_OUTPUT
         env:
           PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
           API_KEY: ${{ secrets.NEON_API_KEY }}
