@@ -22,7 +22,9 @@ jobs:
           username: ${{ secrets.PGUSERNAME }}
           password: ${{ secrets.PGPASSWORD }}
         id: create-branch
-      - run: echo db_url ${{ steps.create-branch.outputs.db_url}}
+      - run: | 
+          echo db_url ${{ steps.create-branch.outputs.db_url}}
+          echo host ${{ steps.create-branch.outputs.host}}
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run Prisma Migrate
