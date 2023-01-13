@@ -24,7 +24,7 @@ jobs:
         id: create-branch
       - run: | 
           echo db_url ${{ steps.create-branch.outputs.db_url}}
-          echo host ${{ steps.create-branch.outputs.host}}
+          echo endpoint ${{ steps.create-branch.outputs.endpoint}}
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run Prisma Migrate
