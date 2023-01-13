@@ -21,9 +21,10 @@ jobs:
             --header "Authorization: Bearer ${API_KEY}" \
             | jq -r .branches \
             | jq -c '.[] | select(.name | contains("'${SHA}'")) .id' \
-            | jq -r
-            )
-          echo "branch_id=${id}" >> GITHUB_OUTPUT
+            | jq -r \
+            ) \
+          echo "branch_id=${id}" >> GITHUB_OUTPUT \
+          echo $id
         env:
           PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
           API_KEY: ${{ secrets.NEON_API_KEY }}
