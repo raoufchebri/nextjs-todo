@@ -20,6 +20,7 @@ jobs:
             --header "Authorization: Bearer ${API_KEY}" \
             | jq -r .branches
             )
+          echo $branches  
           echo "$branches" | jq -c '.[] | select(.name | contains("${SHA}")) .id' 
           
         env:
