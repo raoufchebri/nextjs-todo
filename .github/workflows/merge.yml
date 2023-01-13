@@ -7,7 +7,22 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     steps:
-      - name: Get PR number
-        id: get_pull_number
+      - name: Get last commit SHA
+        id: get_sha
         run: | 
-          echo ${{ github.event.before }}
+          echo "sha=${{ github.event.before }}" >> $GITHUB_OUTPUT
+      - name: Search branch by name
+        run: |
+          branches=$(curl \
+            "https://console.neon.tech/api/v2/projects/${PROJECT_ID}/branches" \
+            --header "Accept: application/json" \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer ${API_KEY}" \
+            | jq -r .branches
+            )
+          echo "$branches" | jq -c '.[] | select(.name | contains("${SHA}")) .id' 
+          
+        env:
+          PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
+          API_KEY: ${{ secrets.NEON_API_KEY }}
+          SHA: ${{ steps.get_sha.outputs.sha }}
