@@ -17,7 +17,7 @@ jobs:
         uses: neondatabase/create-branch-action@v2
         with:
           project_id: ${{ secrets.NEON_PROJECT_ID }}
-          branch_name: branch_pull_${{steps.get_pull_number.outputs.pull_sha}}
+          branch_name: ${{steps.get_pull_number.outputs.pull_sha}}
           api_key: ${{ secrets.NEON_API_KEY }}
           username: ${{ secrets.PGUSERNAME }}
           password: ${{ secrets.PGPASSWORD }}
@@ -33,15 +33,18 @@ jobs:
         env:
           DATABASE_URL: ${{ steps.create-branch.outputs.db_url}}/main
           SHADOW_DATABASE_URL: ${{ steps.create-branch.outputs.db_url}}/shadow
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Deploy Project Artifacts to Vercel
+#       - name: Install Vercel CLI
+#         run: npm install --global vercel@latest
+#       - name: Pull Vercel Environment Information
+#         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+#       - name: Build Project Artifacts
+#         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy to Vercel
         id: deploy
         run: | 
+          npm install --global vercel@latest
+          vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+          vercel build --token=${{ secrets.VERCEL_TOKEN }}
           preview_url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "preview_url=${preview_url}" >> $GITHUB_OUTPUT
       - name: Comment PR
